@@ -1,14 +1,9 @@
-
 # Welcome to BenLinkous.com
-
-![Link Emblem](./assets/chain-link-circle-emblem.png)  
-*Building purpose through cybersecurity, Linux, and creative tech*
-
----
 
 This is my personal legacy blog and digital command center — where I document stories, lessons, and projects that matter.
 
-Whether you're a fellow veteran, an aspiring cybersecurity learner, or someone chasing purpose, this is where my journey connects with yours.
+Whether you're a fellow veteran, aspiring cybersecurity learner, or someone chasing purpose, this is where my journey connects with yours.
+>>>>>>> 0c437f12a9c38675787f81f21535c1b7f8bf6666
 
 ---
 
@@ -101,19 +96,22 @@ Here’s a glimpse of what I’m building and sharing:
 Explore all of them on my [GitHub profile](https://github.com/benlinkous).
 
 
+
+## ✍️ Latest from the Blog
+
+🕵️‍♂️ *Coming soon:* Reflections on AI-assisted learning, building LinkOS, and starting over with purpose.
+>>>>>>> 0c437f12a9c38675787f81f21535c1b7f8bf6666
+
 ---
 
 ## 📬 Stay in Touch
 
 Want to connect, contribute, or collaborate?  
 Reach out at 🌐 [link2cyber.com](https://link2cyber.com) or directly at 📬 link@link2cyber.com.
-
----
-
-> “Live your legacy. Share your story. Build what matters.”
+Live your legacy. Share your story. Build what matters.”
 
 — Call Me Link 🇺🇸
 
----
-
 *Part of the Link ecosystem. Let’s build something awesome together! 🚀*
+=======
+>>>>>>> 0c437f12a9c38675787f81f21535c1b7f8bf6666
