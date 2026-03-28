@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ben Linkous</title>
+<meta name="description" content="Ben Linkous — Veteran, cybersecurity practitioner, and community builder based in Pulaski, Virginia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lora:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+--ink: #0f0f0f;
+--deep: #161616;
+--surface: #1c1c1c;
+--border: #2a2a2a;
+--rust: #c45c2a;
+--rust-dim: #7a3a1a;
+--sage: #4a6741;
+--sage-light: #6b9466;
+--text: #e8e4de;
+--muted: #888078;
+--faint: #333;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+background: var(--ink);
+color: var(--text);
+font-family: 'Lora', serif;
+overflow-x: hidden;
+}
+
+body::after {
+content: '';
+position: fixed;
+inset: 0;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+opacity: 0.035;
+pointer-events: none;
+z-index: 999;
+}
+
+/* NAV */
+nav {
+position: fixed;
+top: 0; left: 0; right: 0;
+z-index: 100;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 1.5rem 3rem;
+background: rgba(15,15,15,0.92);
+backdrop-filter: blur(12px);
+border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+font-family: 'Bebas Neue', sans-serif;
+font-size: 1.4rem;
+letter-spacing: 0.1em;
+color: var(--text);
+}
+
+.nav-logo em { color: var(--rust); font-style: normal; }
+
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+
+.nav-links a {
+text-decoration: none;
+color: var(--muted);
+font-family: 'JetBrains Mono', monospace;
+font-size: 0.65rem;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+transition: color 0.25s;
+}
+
+.nav-links a:hover { color: var(--rust); }
+
+/* HERO */
+.hero {
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+justify-content: flex-end;
+padding: 8rem 3rem 5rem;
+position: relative;
+overflow: hidden;
+}
+
+.hero::before {
+content: '';
+position: absolute;
+inset: 0;
+background:
+radial-gradient(ellipse 80% 60% at 70% 40%, rgba(74,103,65,0.12) 0%, transparent 60%),
+radial-gradient(ellipse 50% 80% at 90% 80%, rgba(196,92,42,0.08) 0%, transparent 50%);
+pointer-events: none;
+}
+
+.hero-tag {
+font-family: 'JetBrains Mono', monospace;
+font-size: 0.65rem;
+letter-spacing: 0.25em;
+text-transform: uppercase;
+color: var(--rust);
+margin-bottom: 1.5rem;
+opacity: 0;
+animation: fadeUp 0.8s 0.2s forwards;
+}
+
+.hero h1 {
+font-family: 'Bebas Neue', sans-serif;
+font-size: clamp(5rem, 14vw, 13rem);
+line-height: 0.9;
+letter-spacing: 0.02em;
+color: var(--text);
+opacity: 0;
+animation: fadeUp 0.9s 0.4s forwards;
+}
+
+.hero h1 .accent { color: var(--rust); }
+
+.hero-sub {
+margin-top: 2rem;
+max-width: 540px;
+font-size: 1.1rem;
+font-style: italic;
+color: var(--muted);
+line-height: 1.7;
+opacity: 0;
+animation: fadeUp 0.9s 0.6s forwards;
+}
+
+.hero-divider {
+margin-top: 3rem;
+width: 60px;
+height: 2px;
+background: var(--rust);
+opacity: 0;
+animation: fadeUp 0.9s 0.8s forwards;
+}
+
+.hero-meta {
+margin-top: 1.5rem;
+font-family: 'JetBrains Mono', monospace;
+font-size: 0.65rem;
+letter-spacing: 0.15em;
+color: var(--muted);
+text-transform: uppercase;
+opacity: 0;
+animation: fadeUp 0.9s 1s forwards;
+}
+
+.hero-rule {
+position: absolute;
+right: 3rem;
+top: 50%;
+transform: translateY(-50%);
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 0.5rem;
+}
+
+.hero-rule span {
+font-family: 'JetBrains Mono', monospace;
+font-size: 0.55rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(--border);
+writing-mode: vertical-rl;
+}
+
+.hero-rule::before {
+content: '';
+width: 1px;
+height: 120px;
+background: var(--border);
+}
+
+/* SECTION BASE */
+section {
+padding: 6rem 3rem;
+max-width: 1100px;
+margin: 0 auto;
+}
+
+.section-label {
+font-family: 'JetBrains Mono', monospace;
+font-size: 0.6rem;
+letter-spacing: 0.3em;
+text-transform: uppercase;
+color: var(--rust);
+margin-bottom: 1rem;
+display: flex;
+align-items: center;
+gap: 1rem;
+}
+
+.section-label::after {
+content: '';
+flex: 1;
+max-width: 60px;
+height: 1px;
+background: var(--rust-dim);
+}
+
+h2.section-title {
+font-family: 'Bebas Neue', sans-serif;
+font-size: clamp(2.5rem, 5vw, 4.5rem);
+line-height: 1;
+letter-spacing: 0.03em;
+color: var(--text);
+margin-bottom: 2rem;
+}
+
+/* INTRO */
+.intro { border-top: 1px solid var(--border); padding-top: 5rem; }
+
+.intro-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 4rem;
+align-items: start;
+}
+
+.intro-grid p {
+font-size: 1.05rem;
+line-height: 1.85;
+color: var(--muted);
+}
+
+.intro-grid p + p { margin-top: 1.2rem; }
+.intro-grid p strong { color: var(--text); font-style: italic; }
+
+.intro-stats {
+display: flex;
+flex-direction: column;
+gap: 2rem;
+border-left: 1px solid var(--border);
+padding-left: 3rem;
+}
+
+.stat-num {
+font-family: 'Bebas Neue', sans-serif;
+font-size: 3.5rem;
+color: var(--rust);
+line-height: 1;
+}
+
+.stat-label {
+font-family: 'JetBrains Mono', monospace;
+font-size: 0.6rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(--muted);
+margin-top: 0.3rem;
+}
+
+/* PILLARS */
+.pillars-section {
+background: var(--deep);
+border-top: 1px solid var(--border);
+border-bottom: 1px solid var(--border);
+padding: 5rem 0;
+}
+
+.pillars-inner {
+max-width: 1100px;
+margin: 0 auto;
+padding: 0 3rem;
+}
+
+.pillars-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 0;
+margin-top: 3rem;
+border: 1px solid var(--border);
+}
+
+.pillar {
+padding: 2.5rem;
+border-right: 1px solid var(--border);
+position: relative;
+transition: background 0.3s;
+}
+
+.pillar:last-child { border-right: none; }
+.pillar:hover { background: var(--surface); }
+
+.pillar-icon { font-size: 1.5rem; margin-bottom: 1.5rem; display: block; }
+
+.pillar-num {
+position: absolute;
+top: 1.5rem; right: 1.5rem;
+font-family: 'Bebas Neue', sans-serif;
+font-size: 3rem;
+color: var(--border);
+line-height: 1;
+}
+
+.pillar h3 {
+font-family: 'Bebas Neue', sans-serif;
+font-size: 1.8rem;
+letter-spacing: 0.05em;
+color: var(--text);
+margin-bottom: 1rem;
+}
+
+.pillar p { font-size: 0.9rem; line-height: 1.75; color: var(--muted); }
+
+.pillar-tag {
+display: inline-block;
+margin-top: 1.5rem;
+font-family: 'JetBrains Mono', monospace;
+font-size: 0.55rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(--sage-light);
+padding: 0.3rem 0.7rem;
+border: 1px solid var(--sage);
+}
+
+/* WORK */
+.work-grid {
+display: grid;
+grid-template-columns: 1fr 1.2fr;
+gap: 5rem;
+align-items: start;
+margin-top: 3rem;
+}
+
+.work-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
+
+.work-list li {
+padding: 1.2rem 0;
+border-bottom: 1px solid var(--border);
+display: flex;
+align-items: flex-start;
+gap: 1rem;
+font-size: 0.95rem;
+color: var(--muted);
+line-height: 1.5;
+transition: color 0.25s;
+}
+
+.work-list li:hover { color: var(--text); }
+
+.work-list li::before {
+content: '→';
+color: var(--rust);
+flex-shrink: 0;
+font-family: 'JetBrains Mono', monospace;
+margin-top: 0.05rem;
+}
+
+.work-cta {
+background: var(--surface);
+border: 1px solid var(--border);
+padding: 2.5rem;
+position: relative;
+}
+
+.work-cta::before {
+content: '';
+position: absolute;
+top: 0; left: 0;
+width: 3px; height: 100%;
+background: var(--rust);
+}
+
+.work-cta h3 {
+font-family: 'Bebas Neue', sans-serif;
+font-size: 1.8rem;
+margin-bottom: 1rem;
+color: var(--text);
+}
+
+.work-cta p { font-size: 0.9rem; line-height: 1.75; color: var(--muted); margin-bottom: 1.5rem; }
+
+.email-link {
+display: inline-flex;
+align-items: center;
+gap: 0.75rem;
+font-family: 'JetBrains Mono', monospace;
+font-size: 0.75rem;
+letter-spacing: 0.1em;
+color: var(--rust);
+text-decoration: none;
+border-bottom: 1px solid var(--rust-dim);
+padding-bottom: 0.2rem;
+transition: all 0.25s;
+}
+
+.email-link:hover { color: var(--text); border-color: var(--text); }
+
+/* PROJECTS */
+.projects-section {
+background: var(--deep);
+border-top: 1px solid var(--border);
+padding: 5rem 0;
+}
+
+.projects-inner { max-width: 1100px; margin: 0 auto; padding: 0 3rem; }
+
+.projects-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 1.5rem;
+margin-top: 3rem;
+}
+
+.project-card {
+background: var(--surface);
+border: 1px solid var(--border);
+padding: 2rem;
+position: relative;
+transition: border-color 0.3s, transform 0.3s;
+overflow: hidden;
+}
+
+.project-card::after {
+content: '';
+position: absolute;
+bottom: 0; left: 0;
+width: 100%; height: 2px;
+background: var(--rust);
+transform: scaleX(0);
+transform-origin: left;
+transition: transform 0.35s ease;
+}
+
+.project-card:hover { border-color: var(--faint); transform: translateY(-3px); }
+.project-card:hover::after { transform: scaleX(1); }
+
+.project-id {
+font-family: 'JetBrains Mono', monospace;
+font-size: 0.55rem;
+letter-spacing: 0.25em;
+color: var(--rust-dim);
+text-transform: uppercase;
+margin-bottom: 1.2rem;
+}
+
+.project-card h3 {
+font-family: 'Bebas Neue', sans-serif;
+font-size: 1.7rem;
+letter-spacing: 0.05em;
+color: var(--text);
+margin-bottom: 0.75rem;
+}
+
+.project-card p { font-size: 0.88rem; line-height: 1.75; color: var(--muted); }
+
+/* ABOUT */
+.about-grid {
+display: grid;
+grid-template-columns: 1.2fr 1fr;
+gap: 5rem;
+margin-top: 3rem;
+align-items: start;
+}
+
+.about-text p { font-size: 1rem; line-height: 1.9; color: var(--muted); margin-bottom: 1.2rem; }
+.about-text p strong { color: var(--text); font-style: italic; }
+
+.about-sidebar { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--border); }
+
+.sidebar-item { padding: 1.2rem 1.5rem; border-bottom: 1px solid var(--border); }
+.sidebar-item:last-child { border-bottom: none; }
+
+.sidebar-key {
+font-family: 'JetBrains Mono', monospace;
+font-size: 0.55rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(--rust);
+margin-bottom: 0.3rem;
+}
+
+.sidebar-val { font-size: 0.9rem; color: var(--text); }
+
+/* CONNECT */
+.connect-section {
+background: var(--deep);
+border-top: 1px solid var(--border);
+text-align: center;
+padding: 6rem 3rem;
+}
+
+.connect-section .section-label { justify-content: center; }
+.connect-section .section-label::after { display: none; }
+
+.connect-tagline {
+font-size: 1.1rem;
+font-style: italic;
+color: var(--muted);
+margin: 1.5rem auto 3rem;
+max-width: 480px;
+line-height: 1.7;
+}
+
+.connect-email {
+display: inline-flex;
+align-items: center;
+gap: 1rem;
+font-family: 'Bebas Neue', sans-serif;
+font-size: 2rem;
+letter-spacing: 0.08em;
+color: var(--text);
+text-decoration: none;
+border-bottom: 2px solid var(--rust);
+padding-bottom: 0.3rem;
+transition: color 0.25s;
+}
+
+.connect-email:hover { color: var(--rust); }
+
+.social-links {
+display: flex;
+justify-content: center;
+gap: 2rem;
+margin-top: 3rem;
+list-style: none;
+}
+
+.social-links a {
+font-family: 'JetBrains Mono', monospace;
+font-size: 0.6rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(--muted);
+text-decoration: none;
+transition: color 0.25s;
+}
+
+.social-links a:hover { color: var(--sage-light); }
+
+/* FOOTER */
+footer {
+border-top: 1px solid var(--border);
+padding: 2rem 3rem;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 0.1em; color: var(--muted); }
+.footer-copy { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; color: var(--faint); text-transform: uppercase; }
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(24px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+opacity: 0;
+transform: translateY(20px);
+transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+nav { padding: 1.2rem 1.5rem; }
+.nav-links { gap: 1.5rem; }
+.hero { padding: 7rem 1.5rem 4rem; }
+section { padding: 4rem 1.5rem; }
+.intro-grid, .work-grid, .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+.intro-stats { border-left: none; padding-left: 0; border-top: 1px solid var(--border); padding-top: 2rem; }
+.pillars-grid, .projects-grid { grid-template-columns: 1fr; }
+.pillar { border-right: none; border-bottom: 1px solid var(--border); }
+.pillar:last-child { border-bottom: none; }
+.hero-rule { display: none; }
+.pillars-inner, .projects-inner { padding: 0 1.5rem; }
+footer { flex-direction: column; gap: 1rem; text-align: center; }
+.connect-section { padding: 4rem 1.5rem; }
+.connect-email { font-size: 1.3rem; }
+}
+</style>
+
+</head>
+
+<body>
+
+<nav>
+<div class="nav-logo">Ben <em>Linkous</em></div>
+<ul class="nav-links">
+<li><a href="#about">About</a></li>
+<li><a href="#work">Work</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#connect">Contact</a></li>
+</ul>
+</nav>
+
+<div class="hero">
+<div class="hero-rule"><span>Pulaski, Virginia</span></div>
+<p class="hero-tag">// benlinkous.com</p>
+<h1>BEN<br><span class="accent">LINK</span>OUS</h1>
+<p class="hero-sub">Understanding information. Strengthening communities. Protecting what matters.</p>
+<div class="hero-divider"></div>
+<p class="hero-meta">Veteran &nbsp;·&nbsp; Cybersecurity &nbsp;·&nbsp; Community Builder</p>
+</div>
+
+<section class="intro" id="about">
+<div class="section-label">About</div>
+<h2 class="section-title">People. Information. Community.</h2>
+<div class="intro-grid reveal">
+<div>
+<p>I'm a <strong>military veteran</strong> transitioning into cybersecurity while staying rooted in the community I call home — Pulaski, Virginia.</p>
+<p>My work lives at the intersection of how information spreads, how people are influenced, and what it takes to <strong>build something real</strong> in a local community.</p>
+<p>I believe that protecting people online and strengthening neighborhoods offline are two sides of the same coin.</p>
+</div>
+<div class="intro-stats">
+<div class="stat-item">
+<div class="stat-num">3</div>
+<div class="stat-label">Active Projects</div>
+</div>
+<div class="stat-item">
+<div class="stat-num">1</div>
+<div class="stat-label">Community — Pulaski, VA</div>
+</div>
+<div class="stat-item">
+<div class="stat-num">∞</div>
+<div class="stat-label">Questions Worth Asking</div>
+</div>
+</div>
+</div>
+</section>
+
+<div class="pillars-section">
+<div class="pillars-inner">
+<div class="section-label">What I Do</div>
+<h2 class="section-title">Three Threads. One Mission.</h2>
+<div class="pillars-grid reveal">
+<div class="pillar">
+<span class="pillar-num">01</span>
+<span class="pillar-icon">🏘️</span>
+<h3>Community</h3>
+<p>Local engagement, civic issues, and the Good Neighbor Project. Real connection, not just online.</p>
+<span class="pillar-tag">Pulaski, VA</span>
+</div>
+<div class="pillar">
+<span class="pillar-num">02</span>
+<span class="pillar-icon">🔐</span>
+<h3>Cybersecurity</h3>
+<p>Practical protection, hands-on learning, and helping people find their footing in a cyber career.</p>
+<span class="pillar-tag">Link2Cyber</span>
+</div>
+<div class="pillar">
+<span class="pillar-num">03</span>
+<span class="pillar-icon">📡</span>
+<h3>Information</h3>
+<p>Disinformation, media literacy, and the incentives shaping what we see online.</p>
+<span class="pillar-tag">Call Me Link</span>
+</div>
+</div>
+</div>
+</div>
+
+<section id="work">
+<div class="section-label">Work With Me</div>
+<h2 class="section-title">Let's Build Something Solid.</h2>
+<div class="work-grid reveal">
+<div>
+<p style="font-size:1rem;line-height:1.85;color:var(--muted);margin-bottom:2rem;">I help individuals and small businesses secure their digital lives and navigate today's information environment — without the jargon.</p>
+<ul class="work-list">
+<li>Small business IT &amp; cybersecurity setup</li>
+<li>Personal digital security audits</li>
+<li>Cybersecurity guidance and career coaching</li>
+<li>Community outreach and civic engagement consulting</li>
+<li>Information literacy workshops</li>
+</ul>
+</div>
+<div class="work-cta">
+<h3>Ready to Talk?</h3>
+<p>Whether you're a neighbor, a small business owner, or someone looking to break into cyber — I'd love to hear from you. No sales pitch. Just a conversation.</p>
+<a href="mailto:ben@benlinkous.com" class="email-link">✉ ben@benlinkous.com</a>
+</div>
+</div>
+</section>
+
+<div class="projects-section" id="projects">
+<div class="projects-inner">
+<div class="section-label">Projects</div>
+<h2 class="section-title">Work in Progress.</h2>
+<div class="projects-grid reveal">
+<div class="project-card">
+<div class="project-id">Project / 001</div>
+<h3>Call Me Link</h3>
+<p>Civic writing focused on community, local issues, and thoughtful engagement with the world around us.</p>
+</div>
+<div class="project-card">
+<div class="project-id">Project / 002</div>
+<h3>Link2Cyber</h3>
+<p>Documenting the journey into cybersecurity — the setbacks, the breakthroughs, and how others can follow the same path.</p>
+</div>
+<div class="project-card">
+<div class="project-id">Project / 003</div>
+<h3>Good Neighbor Project</h3>
+<p>Strengthening communities through local action, real connection, and the belief that neighbors still matter.</p>
+</div>
+</div>
+</div>
+</div>
+
+<div class="connect-section" id="connect">
+<div class="section-label">Contact</div>
+<h2 class="section-title">Say Hello.</h2>
+<p class="connect-tagline">I'm always open to a good conversation — whether it's about cybersecurity, community, or something in between.</p>
+<a href="mailto:ben@benlinkous.com" class="connect-email">ben@benlinkous.com</a>
+<ul class="social-links">
+<li><a href="#">GitHub</a></li>
+<li><a href="#">LinkedIn</a></li>
+<li><a href="#">Twitter / X</a></li>
+</ul>
+</div>
+
+<footer>
+<div class="footer-logo">Ben Linkous</div>
+<div class="footer-copy">© 2026 &nbsp;·&nbsp; Pulaski, Virginia</div>
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(e => {
+if (e.isIntersecting) {
+e.target.classList.add('visible');
+observer.unobserve(e.target);
+}
+});
+}, { threshold: 0.1 });
+reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
